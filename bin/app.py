@@ -110,7 +110,19 @@ def new_student():
         'classes' : request.json['classes']
     }
     students.append(s)
-    return jsonify({'student': s}), 201@app.route('/students', methods=['POST'])
+    return jsonify({'student': s})@app.route('/students', methods=['POST'])
+
+@app.route('/classes', methods=['POST'])
+def new_class():
+    if not request.json or not 'name' in request.json:
+        abort(400)
+    s = {
+        'id': classes[-1]['id'] + 1,
+        'name' : request.json['name'],
+        'sturdents' : request.json['students']
+    }
+    classes.append(s)
+    return jsonify({'class': s})
 
 @app.route('/class/<int:class_id>', methods=['PATCH'])
 def add_student_to_class(class_id):
