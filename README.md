@@ -10,17 +10,11 @@ CMPE 273 lab2
 ```
 POST /students
 
-# Request
-{
-    "name": "Bob Smith"
-}
-
-# Response
-# HTTP Code: 201
-{
-    "id" : 1234456,
-    "name" : "Bob Smith"
-}
+curl --request POST localhost:5000/students --header 'Content-Type: application/json' --data-raw '{
+        "name" : "Cora",
+        "classes" : [1,2]
+}'
+{"student":{"classes":[1,2],"id":4,"name":"Cora"}}
 ```
 
 * Retrieve an existing student
@@ -28,10 +22,8 @@ POST /students
 ```
 GET /students/{id}
 
-{
-    "id" : 1234456,
-    "name" : "Bob Smith"
-}
+curl  localhost:5000/student/3
+{"student":"Thol"}
 ```
 
 * Create a class
@@ -39,17 +31,11 @@ GET /students/{id}
 ```
 POST /classes
 
-# Request
-{
-    "name": "CMPE-273"
-}
-
-# Response
-{
-    "id": 1122334,
-    "name": "CMPE-273",
-    "students": []
-}
+curl --request POST localhost:5000/classes --header 'Content-Type: application/json' --data-raw '{
+        "name" : "CMPE-255",
+        "students" : [1,2]
+}'
+{"class":{"id":5,"name":"CMPE-255","sturdents":[1,2]}}
 ```
 
 * Retrieve a class
@@ -57,11 +43,8 @@ POST /classes
 ```
 GET /classes/{id}
 
-{
-    "id": 1122334,
-    "name": "CMPE-273",
-    "students": []
-}
+curl  localhost:5000/class/5
+{"class":"CMPE-255"}
 ```
 
 * Add students to a class
@@ -69,21 +52,11 @@ GET /classes/{id}
 ```
 PATCH /classes/{id}
 
-# Request
-{
-    "student_id": 1234456
-}
-
-# Response
-{
-    "id": 1122334,
-    "name": "CMPE-273",
-    "students": [
-        {
-            "id" : 1234456,
-            "name" : "Bob Smith"
-        }
-    ]
-}
+curl --location --request PATCH 'localhost:5000/class/3' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+        "student_id" : 2
+}'
+{"id":3,"name":"CMPE-280","students":[{"classes":[1,2,3,4],"id":1,"name":"John Doe"},{"classes":[2,4],"id":2,"name":"Jane Doe"}]}
 
 ```
