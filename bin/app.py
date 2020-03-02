@@ -110,7 +110,7 @@ def new_student():
         'classes' : request.json['classes']
     }
     students.append(s)
-    return jsonify({'student': s})@app.route('/students', methods=['POST'])
+    return jsonify({'student': s})
 
 @app.route('/classes', methods=['POST'])
 def new_class():
@@ -119,7 +119,7 @@ def new_class():
     s = {
         'id': classes[-1]['id'] + 1,
         'name' : request.json['name'],
-        'sturdents' : request.json['students']
+        'students' : request.json['students']
     }
     classes.append(s)
     return jsonify({'class': s})
