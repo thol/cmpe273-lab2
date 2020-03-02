@@ -16,6 +16,7 @@ curl --request POST localhost:5000/students --header 'Content-Type: application/
 }'
 {"student":{"classes":[1,2],"id":4,"name":"Cora"}}
 ```
+![](./images/post_student.png)
 
 * Retrieve an existing student
 
@@ -25,6 +26,7 @@ GET /students/{id}
 curl  localhost:5000/student/3
 {"student":"Thol"}
 ```
+![](./images/get_student.png)
 
 * Create a class
 
@@ -37,6 +39,7 @@ curl --request POST localhost:5000/classes --header 'Content-Type: application/j
 }'
 {"class":{"id":5,"name":"CMPE-255","sturdents":[1,2]}}
 ```
+![](./images/post_class.png)
 
 * Retrieve a class
 
@@ -46,6 +49,7 @@ GET /classes/{id}
 curl  localhost:5000/class/5
 {"class":"CMPE-255"}
 ```
+![](./images/get_class.png)
 
 * Add students to a class
 
@@ -60,3 +64,4 @@ curl --location --request PATCH 'localhost:5000/class/3' \
 {"id":3,"name":"CMPE-280","students":[{"classes":[1,2,3,4],"id":1,"name":"John Doe"},{"classes":[2,4],"id":2,"name":"Jane Doe"}]}
 
 ```
+![](./images/patch_class.png)
